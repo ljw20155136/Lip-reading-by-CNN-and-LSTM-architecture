@@ -196,7 +196,7 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
 
 <br />
 
-![fig_11](./figures/fig_11.png)
+![fig_11](./figures/fig_11.PNG)
 
 <br />
 
@@ -212,7 +212,7 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
   
 <br />
 
-![fig_13](./figures/fig_13.png)
+![fig_13](./figures/fig_13.PNG)
 
 <br />  
 
@@ -220,7 +220,7 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
   
 <br />
 
-![fig_14](./figures/fig_14.png)
+![fig_14](./figures/fig_14.PNG)
 
 <br />  
 
@@ -228,7 +228,7 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
   
 <br />
 
-![fig_15](./figures/fig_15.png)
+![fig_15](./figures/fig_15.PNG)
 
 <br />  
 
