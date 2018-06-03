@@ -176,6 +176,81 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
 
 <br />
 
+## Environment Setup
+
+### Anaconda Installation
+
+Anaconda is a free distribution of the Python language. It provides an individual virtual environment for each project and automatic package management. It also offers a wide variety of python applications such as jupyter notebook, spyder, and so on. 
+
+1. Access https://www.anaconda.com/download/ and download Anaconda setup file.
+
+<br />
+
+![fig_17](./figures/fig_17.png)
+
+<br />
+
+2.	Open Anaconda setup. Proceed installation by following instructions in the setup program. You can either choose or not choose the several options.
+
+<br />
+
+![fig_18](./figures/fig_18.png)
+
+<br />
+
+3.	Start Anaconda Navigator. At the environment tab, you can manage environments and installed packages. You can create and use multiple environments in the Anaconda. Create a new environment that will be used for the course project. 
+
+<br />
+
+![fig_19](./figures/fig_19.png)
+
+<br />
+
+4.	Install packages in the created environments. Find numpy among the packages that are not installed. Repeat the same job for matplotlib, opencv, tensroflow, and keras. Simply checking those five packages is enough, other dependent packages required will be added automatically when you enter apply button.
+
+<br />
+
+![fig_20](./figures/fig_20.png)
+
+<br />
+
+
+<br />
+
+![fig_21](./figures/fig_21.png)
+
+<br />
+
+5.	At the home tab, you can check the applications installed in the environment. Install Jupyter notebook, together with other applications you may want, among the application lists.
+
+<br />
+
+![fig_22](./figures/fig_22.png)
+
+<br />
+
+6.	Open Jupyter notebook and create a new python3 file for the test.
+
+<br />
+
+![fig_23](./figures/fig_23.png)
+
+<br />
+
+<br />
+
+![fig_24](./figures/fig_24.png)
+
+<br />
+
+7.	Verify whether python module packages are successfully installed by importing those modules and checking the package version.
+
+<br />
+
+![fig_25](./figures/fig_25.png)
+
+<br />
+
 ## Dataset Preparation
 
   As suggested in introduction, we had to manually create few lip motion datasets for the training of our model. We selected the 7 most frequently used words in the news. Also, a default set was prepared for lip motion excluding these seven words. Therefore, 8 labels were prepared; 미국(America), 국회(Congress), 기자(Journalist), 뉴스(News), 북한(North Korea), 대통령(President), 오늘(Today), 디폴트(Default). If you want, you can select more words, but it will be more difficult to collect datasets. 
@@ -241,3 +316,7 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
 <br />
 
   Finally, to get data smoothly at training part of deep learning model, you should organize the filenames and path.
+
+### Preprocessing dataset
+
+  In this part, we use **Support Vector Machine** which use machine learning and **OpenCV**. It is also important part for deep learning, but we will not write on this tutorial. So, if you are interested in preprocessing part, please see '**preprocessing**' directory.
