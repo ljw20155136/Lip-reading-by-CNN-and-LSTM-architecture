@@ -10,7 +10,7 @@
 
   Because there were no Hangul lip datasets available for deep learning, it was necessary to create the datasets manually. Therefore, to recognize the overall general terms of language, not only does it require a large number of datasets, but also the size and complexity of the neural net increases. Due to time and hardware limitations, **this project defined the problem by classifying only a few words**.
   
-### Precedent Research & Reference
+### Precedent research & Reference
   There are some precedent researches which are related to this project as follows :
   
   * Garg Amit, Jonathan Noyola, and Sameep Bagadia. **Lip reading using CNN and LSTM**. Technical report, Stanford University, CS231n project report, 2016.
@@ -25,6 +25,12 @@
 
 ### What is the deep learning?
 
-  Deep learning is defined by class of machine learning algorithms that use diverse combination of nonlinear processing for abstract. The meaning of abstract is feature extraction and transformation. In other words, teach computer to human’s way of thinking.
+  Deep learning is defined by class of machine learning algorithms that use diverse combination of nonlinear processing for abstract. The meaning of abstract is feature extraction and transformation. In other words, **teach computer to human’s way of thinking**.
   
-  Deep learning is learned by using artificial neural network. So, we learn about artificial neural network in the next paragraph.
+  Deep learning is learned by using **artificial neural network**. So, we learn about artificial neural network in the next paragraph.
+
+### Artificial Neural Network
+
+  Artificial neural network is imitation of biological neural network as the word itself. First we learn about an artificial neuron. The below left side picture is representation biological neuron. The neuron is an electrically excitable cell, receive electrical signals from other neurons and then give this signal to other neurons.
+  
+ ![fig_1](./figures/fig_1.jpg)
