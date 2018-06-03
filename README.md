@@ -327,7 +327,7 @@ Anaconda is a free distribution of the Python language. It provides an individua
 
   After several trials, we set hyperparameters as below table.
 
-Hyperparameters
+Hyperparameters | detail
 ---------------
 Batch size | 32
 Epoch numbers | 50
