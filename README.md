@@ -327,7 +327,68 @@ Anaconda is a free distribution of the Python language. It provides an individua
 
   After several trials, we set hyperparameters as below table.
 
-Hyperparameters | detail
----------------
-Batch size | 32
-Epoch numbers | 50
+<br />
+
+![fig_26](./figures/fig_26.png)
+
+<br />
+
+  The models trained with the conditions above showed the successful result of validation accuracy exceeding 80%. below three figures are training history of our models with 10, 15, and 20-time steps, respectively. Among 3 time steps (# of frames), 10-time steps showed the best result of 86% validation accuracy. Also, the graph of 10-time steps result, which was obtained by accepting only first 10 frames per video, is the most stable.
+
+<br />
+
+![fig_27](./figures/fig_27.png)
+**10-time steps result, final val loss : 0.58, final val acc : 0.86**
+
+<br />
+
+<br />
+
+![fig_28](./figures/fig_28.png)
+**15-time steps result, final val loss : 0.58, final val acc : 0.82**
+
+<br />
+
+<br />
+
+![fig_29](./figures/fig_29.png)
+**10-time steps result, final val loss : 0.62, final val acc : 0.82**
+
+<br />
+
+### Model test
+
+  The trained model has been recorded as a ‘.h5’ file and then loaded again to test with the 768 datasets constructed by SVM-based lip detection algorithm. Below table is test accuracy for each dataset label. The model showed overall 51.6% accuracy for the test set. It appears that since the test set was preprocessed in a different way from the training and validation set, the test accuracy is lower than the validation accuracy.
+
+<br />
+
+![fig_30](./figures/fig_30.png)
+**Lip video classification with the trained model**
+
+<br />
+
+<br />
+
+![fig_31](./figures/fig_31.png)
+
+<br />
+
+## Discussion
+
+### Discussion
+
+  What is worth our attention is that counterintuitively, the model trained with first 10 frames produces a better result in terms of validation accuracy. Since the first syllables of the seven words are all different, first 10 frames seem to have been enough to distinguish the selected words. Also, final lip shapes of the same labels differ when there come different postpositions(조사). Hence, models trained with longer frames show worse results. Since deep learning is “black-box method”, we cannot precisely know how the classification worked and exactly what factors have affected, but there are possibilities that the model classified the video by the length of padding not by geometrical features when the time step was longer than average video length. Though validation accuracy was about 80%, test accuracy was lower to be 51.6%. When it comes to specific labels, test accuracy for label ‘대통령’, which is uniquely 3-length syllable word, was about 93.7% while that for label ‘국회’ was 0%. The trained model seems to be tied to the training set, overfitted. It needs to be improved through repeated training with datasets of a wide variety.
+
+  It seems that after transfer learning, the CNN with fine-tuned weight successfully extracted features from the lip. Since each label was made by one person, the classification perhaps was conducted by the other characters than geometry or bias in datasets. For example, the image has been resized twice during the preprocessing, and this may have caused the extent of lossy of images to affect the classification.
+
+### Constraints and limitations
+
+  Since the time and resources were limited, there exist limitations in this project. It was unable to use better CNN models than MobileNet such as VGG, due to the lack of memory and time. The number of labels and the number of the dataset for each label also quite limited. The type of dataset is confined to standard anchor case only. The characteristic feature of Korean grammar ‘조사’ made this project even more difficult, the existence of ‘조사’ changes the final shape of the lip even though the same person is speaking the same word. Lastly, our model is made to produce output once when 20 frames are given. If we fix the model to give the output for real-time video, we could conduct a webcam demo.
+
+### What you can learn from the tutorial
+
+This tutorial mainly comprises three parts. This tutorial, first of all, covers the architecture of CNN and LSTM. Students can get to know basic concepts and objectives of each structure and how to implement those neural network structures using python codes. Detailed techniques and hands-on practices for transfer learning were introduced, as well. Also how to train a model, back propagation, plotting loss and accuracy can be learned through this tutorial. How to prepare data in forms of image and video has been additionally dealt. Specifically, basic image processing techniques such as cropping, resizing, and computer vision algorithms such as cascade classifier, SVM-based detection, etc are introduced.
+
+### Future works
+
+We here propose several future works. By the time completing our tutorial, students will be capable of challenging these problems. First, extending current work to the entire Korean syllable would be an interesting work. Second, considering the context in lip reading by taking word sequence in the neural network to distinguish words with similar lip shape would be a meaningful work. We can also apply our model architecture to other languages. Lastly, by fusing audio data and lip reading data, it would be possible to increase the accuracy dramatically.
