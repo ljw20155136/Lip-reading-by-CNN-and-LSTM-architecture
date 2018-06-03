@@ -4,17 +4,11 @@
 
 ## Introduction
   This deep learning project is about Lip Reading which is a technique of understanding speech by visually interpreting the movements of the lips so, we implemented this Lip Reading by using deep learning. It can be used for hard-of hearing people or to get some information from video without sound.
-
-<br />
-
 ### Objective
 
   Lip Reading relies on the kind of the language and, in this project, **we chose Hangul as the language to implement the Lip Reading**.
 
   Because there were no Hangul lip datasets available for deep learning, it was necessary to create the datasets manually. Therefore, to recognize the overall general terms of language, not only does it require a large number of datasets, but also the size and complexity of the neural net increases. Due to time and hardware limitations, **this project defined the problem by classifying only a few words**.
-  
-<br />
-
 ### Precedent research & Reference
 
   There are some precedent researches which are related to this project as follows :
@@ -24,20 +18,14 @@
   * Gutierrez, Abiel, and Zoe-Alanah Robert. "**Lip Reading Word Classification**".
   
   * Parth Khetarpal, Shayan Sadar, and Riaz Moradian. "**LipVision: A Deep Learning Approach**“, International Journal of Computer Applications, 2017.
-
-<br />
-
+  
 ## Background Knowledge for Deep Learning
-
-<br />
 
 ### What is the deep learning?
 
   Deep learning is defined by class of machine learning algorithms that use diverse combination of nonlinear processing for abstract. The meaning of abstract is feature extraction and transformation. In other words, **teach computer to human’s way of thinking**.
   
   Deep learning is learned by using **artificial neural network**. So, we learn about artificial neural network in the next paragraph.
-
-<br />
 
 ### Artificial Neural Network
 
@@ -60,8 +48,6 @@
   Artificial neural network is compounded of artificial neuron. Neural network is composed of layer and the layer has several neurons. There is input layer, output layer and hidden layer. Each neurons are fully-connected as above picture. If the number of hidden layer increase, the neural network is called as ‘Deep Neural Network (DNN)’. And, deep learning use this deep neural network for learning model. In hidden layer, generally use ReLU for activation function. The meaning of ‘Training’ or ‘Learning’ in the deep learning is adjustment of weights. The detailed explanation of ‘Learning’ exists below.
  
   There are many types of neural network or deep learning model. In this text, learn about CNN and RNN that are used in our model and famous models.
- 
-<br />
 
 ### Convolution Neural Network
 
@@ -98,8 +84,6 @@
  
   In the “Basic Keras Programming tutorial code”, you can study how to construct the CNN model in the Keras.
 
-<br />
-
 ### Recurrent Neural Network
 
   Recurrent neural network is typically used to find regular pattern. Sequence is the data that important order. RNN’s input is a sequence. Recurrent neural network consider present input data and previous input data.
@@ -119,8 +103,6 @@
 <br />
 
   Conceptually, RNN use two input data that are present input and previous output. LSTM is one of the RNN.
-  
-<br />
 
 ### Dataset
 
@@ -137,8 +119,6 @@
 #### Test dataset
 
   Test dataset is independent of the training dataset. This dataset use for test deep learning model that finished learning.
-  
-<br />
 
 ### Learning (Training)
 
