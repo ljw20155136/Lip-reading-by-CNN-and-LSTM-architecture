@@ -84,11 +84,15 @@
 
 ![fig_4](./figures/fig_4.png)
 
+<br />
+
   Flatten layer transform 2D data such as matrix to 1D data. The data must 1D shape for input data of fully-connected layer. So, flatten layer is located in between convolution layer or pooling layer and fully-connected layer.
 
 <br />
 
 ![fig_5](./figures/fig_5.png)
+
+<br />
 
   This above picture is basic structure of CNN. Convolution layer and pooling layer are stacked repeatedly. And the output transform 1D data by flatten layer, the transformed 1D data input fully-connected layer. The output layer apply Softmax activation function for classification.
  
