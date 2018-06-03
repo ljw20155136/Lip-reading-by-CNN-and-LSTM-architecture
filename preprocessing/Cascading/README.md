@@ -2,7 +2,7 @@
 
 <br />
   
-![fig_1](./figures/fig_1.png)<br />
+![fig_1](./figures/fig_1.PNG)<br />
 **Cascading lip tracker algorithm**
 
 <br />
@@ -36,7 +36,7 @@ if mouth_cascade.empty():
   
 <br />
   
-![fig_2](./figures/fig_2.png)<br />
+![fig_2](./figures/fig_2.PNG)<br />
 **Features used by training**
 
 <br />
@@ -89,7 +89,7 @@ for i in range(1, 101):
 
 <br />
   
-![fig_3](./figures/fig_3.png)<br />
+![fig_3](./figures/fig_3.PNG)<br />
 
 <br />
 
@@ -124,7 +124,7 @@ for i in range(1, 101):
   
 <br />
   
-![fig_4](./figures/fig_4.png)<br />
+![fig_4](./figures/fig_4.PNG)<br />
 
 <br />
 
@@ -147,7 +147,7 @@ for i in range(1, 101):
   
 <br />
   
-![fig_5](./figures/fig_5.png)<br />
+![fig_5](./figures/fig_5.PNG)<br />
 
 <br />
 
@@ -173,7 +173,7 @@ Mask means selecting special area (certain space, certain color, etc). Mask the 
 
 <br />
   
-![fig_7](./figures/fig_7.png)<br />
+![fig_7](./figures/fig_7.PNG)<br />
 
 <br />
 
@@ -201,7 +201,7 @@ ROI is the boundary box on the mouth. We already found the ROI by drawing a rect
   
 <br />
   
-![fig_8](./figures/fig_8.png)<br />
+![fig_8](./figures/fig_8.PNG)<br />
 
 <br />
 
@@ -289,7 +289,7 @@ cv2.destroyAllWindows()
 
 <br />
   
-![fig_12](./figures/fig_12.png)<br />
+![fig_12](./figures/fig_12.PNG)<br />
 
 <br />
 
@@ -311,7 +311,7 @@ cv2.destroyAllWindows()
 
 <br />
   
-![fig_13](./figures/fig_13.png)<br />
+![fig_13](./figures/fig_13.PNG)<br />
 **Mixed image(res) by adding just one row to make mixed image**
 
 <br />
@@ -325,7 +325,7 @@ To make 2D histogram, we need to convert the color-space to HSV. You can get inf
 
 <br />
   
-![fig_14](./figures/fig_14.png)<br />
+![fig_14](./figures/fig_14.PNG)<br />
 
 <br />
 
@@ -338,7 +338,7 @@ In this step, we makes 2D histograms of mouth.
 
 <br />
   
-![fig_15](./figures/fig_15.png)<br />
+![fig_15](./figures/fig_15.PNG)<br />
 **Mouth and 2D histogram of mouth (Hue and Saturation)**
 
 <br />
@@ -353,7 +353,7 @@ This stage is tracking the mouth. We do this because detecting lip every single 
 
 <br />
   
-![fig_16](./figures/fig_16.png)<br />
+![fig_16](./figures/fig_16.PNG)<br />
 **Not using mouth tracking algorithm**
 
 <br />
@@ -369,7 +369,7 @@ So, we use the mouth tracking algorithm. Once mouth is detected, track the mouth
 
 <br />
   
-![fig_18](./figures/fig_18.png)<br />
+![fig_18](./figures/fig_18.PNG)<br />
 **Mouth tracking algorithm**
 
 <br />
@@ -399,7 +399,7 @@ So, we use the mouth tracking algorithm. Once mouth is detected, track the mouth
 
 <br />
   
-![fig_19](./figures/fig_19.png)<br />
+![fig_19](./figures/fig_19.PNG)<br />
 
 <br />
 
@@ -442,7 +442,7 @@ The initial window is shown in blue circle with the name "C1". Its original cent
 
 <br />
   
-![fig_22](./figures/fig_22.png)<br />
+![fig_22](./figures/fig_22.PNG)<br />
 **Principle of MeanShift**
 
 <br /> 
@@ -463,7 +463,7 @@ This step is saving the image file for each frame of video by jpg format. Functi
 
 <br />
   
-![fig_23](./figures/fig_23.png)<br />
+![fig_23](./figures/fig_23.PNG)<br />
 **Mouth and resized mouth**
 
 <br /> 
