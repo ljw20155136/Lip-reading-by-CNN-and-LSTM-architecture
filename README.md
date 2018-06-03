@@ -144,7 +144,7 @@
 
 Now, explain the visualization of learning process in the Keras. In the Keras, can get history object as return value of fit( ) function. In the history object, there is training loss value and accuracy, validation loss and accuracy each epochs. Use history function for get the history object. And then, graphical presentation of this values by using ‘matplotlib’ package. The detail and usage with example code of visualization of learning process in “Basic Keras Programming tutorial code”.
 
-## Our Deep Learning Model (CNN+LSTM)\
+## Our Deep Learning Model (CNN+LSTM)
 
 ### Transfer learning
 
@@ -175,3 +175,19 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
 **CNN + LSTM Model Architecture**
 
 <br />
+
+## Data Set Preparation
+
+  As suggested in introduction, we had to manually create few lip motion datasets for the training of our model. We selected the 7 most frequently used words in the news. Also, a default set was prepared for lip motion excluding these seven words. Therefore, 8 labels were prepared; 미국(America), 국회(Congress), 기자(Journalist), 뉴스(News), 북한(North Korea), 대통령(President), 오늘(Today), 디폴트(Default). If you want, you can select more words, but it will be more difficult to collect datasets. 
+  
+  Because there is a large variation in the way of pronouncing and mouth shape according to each individual, we collected the lip motion video of the news anchors that are supposed to use standardized pronunciation. For each label, 100 raw data were collected. (The gender ratio of the news anchors was same.) If you have enough time, it is recommended to collect more than 100 data.
+  
+  The raw video data had to be preprocessed appropriately for the training of the deep learning model. Considerations in preprocessing are as follows:
+
+ * Two ways of Lip detection which is to extract only the image of the lips (Because during the detection process something which is not lip can be detected, there are some loss of # of data)
+ 
+ * Cropping and Resizing to be 64 x 64 RGB images.
+ 
+ * Padding & Sampling for data (fame) normalization
+ 
+ * 8:2 ratio of Train/Validation set
