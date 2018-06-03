@@ -309,3 +309,196 @@ cv2.destroyAllWindows()
 ~~~
 **Add just one row to make mixed image**
 
+<br />
+  
+![fig_13](./figures/fig_13.png)<br />
+**Mixed image(res) by adding just one row to make mixed image**
+
+<br />
+
+To make 2D histogram, we need to convert the color-space to HSV. You can get information about HSV color-space in website below.
+
+(https://en.wikipedia.org/wiki/HSL_and_HSV)
+
+**cv2.calcHist(images, channels, mask, histSize, ranges)**
+
+
+<br />
+  
+![fig_14](./figures/fig_14.png)<br />
+
+<br />
+
+  You can get some examples about it in website below.
+
+  (https://docs.opencv.org/3.3.1/d1/db7/tutorial_py_histogram_begins.html)
+
+  2D histogram uses two or more channels. Usually Hue and Saturation channels are chosen. We also use the Hue and saturation channels. 
+In this step, we makes 2D histograms of mouth.
+
+<br />
+  
+![fig_15](./figures/fig_15.png)<br />
+**Mouth and 2D histogram of mouth (Hue and Saturation)**
+
+<br />
+
+Function, ‘cv2.normalize’ normalize the histogram. 
+
+‘term_crit’ makes criteria, it is used by meanShift.
+
+## Track the mouth
+
+This stage is tracking the mouth. We do this because detecting lip every single frame increases the possibility of the error.
+
+<br />
+  
+![fig_16](./figures/fig_16.png)<br />
+**Not using mouth tracking algorithm**
+
+<br />
+
+<br />
+  
+![fig_17](./figures/fig_17.png)<br />
+**Error caused by detecting lips for every frame**
+
+<br />
+
+So, we use the mouth tracking algorithm. Once mouth is detected, track the mouth with image processing algorithms. **BackProject & meanShift** function is used for tracking
+
+<br />
+  
+![fig_18](./figures/fig_18.png)<br />
+**Mouth tracking algorithm**
+
+<br />
+
+### Take the next frame and make a folder to save the preprocessed data
+
+~~~pyton
+      while (1):
+        ret, frame = cap.read()
+        if not os.path.exists('./dataset/News/S%d' % i):
+            os.makedirs('./dataset/News/S%d' % i)
+        if ret == True:
+~~~
+
+  This step finds some directory for saving the preprocessed data. If this step does not find the directory, then it should make a directory like that above.
+
+  You can move to the next frame of the video by using ‘if ret == True:’
+
+### Backproject
+
+~~~pyton
+      hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+      dst = cv2.calcBackProject([hsv], [0, 1], roi_hist, [0, 180, 0, 255], 1)
+~~~
+
+**dst = cv2.calcBackProject(images, channels, hist, ranges, scale)**
+
+<br />
+  
+![fig_19](./figures/fig_19.png)<br />
+
+<br />
+
+  It is used for image segmentation or finding objects of interest in an image. In simple words, it creates an image of the same size (but single channel) as that of our input image, where each pixel corresponds to the probability of that pixel belonging to our object. In more simple worlds, the output image will have our object of interest in more white compared to remaining part.
+  
+
+<br />
+  
+![fig_20](./figures/fig_20.png)<br />
+**Backproject of the video**
+
+<br />  
+
+Example of the backproject is below
+
+(https://docs.opencv.org/3.3.1/dc/df6/tutorial_py_histogram_backprojection.html) 
+
+### MeanShift
+
+~~~pyton
+            # apply meanshift to get the new location
+            ret, track_window = cv2.meanShift(dst, track_window, term_crit)
+            # Draw it on image
+            x, y, w, h = track_window
+            img2 = cv2.rectangle(frame, (x, y), (x + w, y + h), 0, 1)
+~~~
+
+The intuition behind the meanshift is simple. Consider you have a set of points. (It can be a pixel distribution like histogram backprojection). You are given a small window (may be a circle) and you have to move that window to the area of maximum pixel density (or maximum number of points). It is illustrated in the simple image given below:
+
+<br />
+  
+![fig_21](./figures/fig_21.png)<br />
+**Principle of MeanShift**
+
+<br />  
+
+The initial window is shown in blue circle with the name "C1". Its original center is marked in blue rectangle, named "C1_o". But if you find the centroid of the points inside that window, you will get the point "C1_r" (marked in small blue circle) which is the real centroid of window. Surely they don't match. So move your window such that circle of the new window matches with previous centroid. Again find the new centroid. Most probably, it won't match. So move it again, and continue the iterations such that center of window and its centroid falls on the same location (or with a small desired error). So finally what you obtain is a window with maximum pixel distribution. It is marked with green circle, named "C2". As you can see in image, it has maximum number of points. 
+
+**ret, window=cv2.meanShift(image, window, criteria)**
+
+<br />
+  
+![fig_22](./figures/fig_22.png)<br />
+**Principle of MeanShift**
+
+<br /> 
+
+You can get examples on site below
+(https://docs.opencv.org/3.4/db/df8/tutorial_py_meanshift.html)
+
+### Save the preprocessed data
+
+~~~pyton
+            lip = frame[y:y + h, x:x + w]
+            video = cv2.resize(lip, (64, 64), interpolation=cv2.INTER_CUBIC)
+            cv2.imwrite("./dataset/News/S%d/%d.jpg" % (i, j), video)
+            j = j + 1
+~~~
+
+This step is saving the image file for each frame of video by jpg format. Function, ‘cv2.imwrite’ allows us to save the image file. We need to resize the lip image with 64X64 sizes to meet the CNN+LSTM model.
+
+<br />
+  
+![fig_23](./figures/fig_23.png)<br />
+**Mouth and resized mouth**
+
+<br /> 
+
+### Set quit key
+
+~~~python
+            k = cv2.waitKey(60) & 0xff
+            if k == 27:
+                break
+            else:
+                continue
+
+        else:
+            break
+
+cv2.waitKey(27)
+cv2.destroyAllWindows()
+cap.release()
+~~~
+
+Function, ‘cv2.waitKey(delay)’ waits for a pressed key. Parameter, ‘delay’ means the delayed time, the unit is milliseconds. 
+
+~~~python
+import cv2
+
+img = cv2.imread('lena.jpg', cv2.IMREAD_GRAYSCALE)
+cv2.imshow('image',img)
+k = cv2.waitKey(0)
+if k == 27: # esc key
+    cv2.destroyAllWindow()
+~~~
+**waitKey**
+
+The number ‘27’ means ESC key. If you press ESC key in example 7, the program will be quitted because ‘cv2.destroyAllWindow’ destroys all of the HighGUI windows.
+
+If you missed the quit key, the program would encounter the error.
+
