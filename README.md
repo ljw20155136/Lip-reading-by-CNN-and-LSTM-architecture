@@ -320,3 +320,14 @@ Anaconda is a free distribution of the Python language. It provides an individua
 ### Preprocessing dataset
 
   In this part, we use **Support Vector Machine** which use machine learning and **OpenCV**. It is also important part for deep learning, but we will not write on this tutorial. So, if you are interested in preprocessing part, please see '**preprocessing**' directory.
+  
+## Result
+
+### Training Result
+
+  After several trials, we set hyperparameters as below table.
+
+Hyperparameters
+---------------
+Batch size | 32
+Epoch numbers | 50
