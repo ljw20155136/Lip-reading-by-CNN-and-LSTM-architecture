@@ -1,7 +1,7 @@
 # Lip-reading-by-CNN-and-LSTM-architecture
-</n>
-</n>
-</n>
+
+
+
 ## Introduction
   This deep learning project is about Lip Reading which is a technique of understanding speech by visually interpreting the movements of the lips so, we implemented this Lip Reading by using deep learning. It can be used for hard-of hearing people or to get some information from video without sound.
   
@@ -42,3 +42,11 @@
   Artificial neural network is compounded of artificial neuron. Neural network is composed of layer and the layer has several neurons. There is input layer, output layer and hidden layer. Each neurons are fully-connected as above picture. If the number of hidden layer increase, the neural network is called as ‘Deep Neural Network (DNN)’. And, deep learning use this deep neural network for learning model. In hidden layer, generally use ReLU for activation function. The meaning of ‘Training’ or ‘Learning’ in the deep learning is adjustment of weights. The detailed explanation of ‘Learning’ exists below.
  
   There are many types of neural network or deep learning model. In this text, learn about CNN and RNN that are used in our model and famous models.
+  
+### Convolution Neural Network
+
+  Convolutional neural network is a class of deep, feed-forward neural networks, generally used to analyzing visual imagery. CNN is composed of convolution layer and pooling layer, flatten layer, fully connected layer. CNN can be separated region that feature extraction of picture and region that classification. The convolution layer and pooling layer are region that feature extraction. And, the fully connected layer is region that classification. The flatten layer is located in between this regions.
+  
+![fig_3](./figures/fig_3.png)
+<center> **The process of convolution product by 2X2 filter with 1 stride** </center>
+
