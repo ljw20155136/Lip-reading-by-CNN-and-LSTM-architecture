@@ -337,21 +337,21 @@ Anaconda is a free distribution of the Python language. It provides an individua
 
 <br />
 
-![fig_27](./figures/fig_27.png)
+![fig_27](./figures/fig_27.png)<br />
 **10-time steps result, final val loss : 0.58, final val acc : 0.86**
 
 <br />
 
 <br />
 
-![fig_28](./figures/fig_28.png)
+![fig_28](./figures/fig_28.png)<br />
 **15-time steps result, final val loss : 0.58, final val acc : 0.82**
 
 <br />
 
 <br />
 
-![fig_29](./figures/fig_29.png)
+![fig_29](./figures/fig_29.png)<br />
 **10-time steps result, final val loss : 0.62, final val acc : 0.82**
 
 <br />
