@@ -48,7 +48,7 @@
   
 ![fig_3](./figures/fig_3.png)
 
-<div style="text-align:right">
+<div style="text-align:center">
 **The process of convolution product by 2X2 filter with 1 stride**
 </div>
 
