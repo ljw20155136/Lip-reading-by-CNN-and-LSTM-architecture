@@ -329,7 +329,7 @@ Anaconda is a free distribution of the Python language. It provides an individua
 
 <br />
 
-![fig_26](./figures/fig_26.png)
+![fig_26](./figures/fig_26.PNG)
 
 <br />
 
@@ -369,7 +369,7 @@ Anaconda is a free distribution of the Python language. It provides an individua
 
 <br />
 
-![fig_31](./figures/fig_31.png)
+![fig_31](./figures/fig_31.PNG)
 
 <br />
 
