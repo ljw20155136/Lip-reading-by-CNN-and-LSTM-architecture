@@ -33,4 +33,4 @@
 
   Artificial neural network is imitation of biological neural network as the word itself. First we learn about an artificial neuron. The below left side picture is representation biological neuron. The neuron is an electrically excitable cell, receive electrical signals from other neurons and then give this signal to other neurons.
   
- ![fig_1](./figures/fig_1.jpg)
+ ![fig_1](./figures/fig_1.png)
