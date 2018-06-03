@@ -321,6 +321,804 @@ Anaconda is a free distribution of the Python language. It provides an individua
 
   In this part, we use **Support Vector Machine** which use machine learning and **OpenCV**. It is also important part for deep learning, but we will not write on this tutorial. So, if you are interested in preprocessing part, please see '**preprocessing**' directory.
   
+## Model Implementation Introduction : Keras API
+
+  To implement the DeepLearning model of the **CNN + LSTM Architecture**, we will use **Keras**, an Open Source Neural Network Library written in Python.
+  
+  The reason for choosing Keras is because Keras provides an intuitive API so **that non-specialists** can easily develop and utilize **deep-learning models in their fields**, Keras has four different distinctions compared to other DeepLearning API. 
+
+  **Modularity**: **The modules provided by Keras are independent**, configurable, and can be linked together with the minimum possible constraints. A model consists of these modules in a sequence or graph. In particular, neural network layers, cost functions, optimizers, initialization techniques, activation functions, and normalization techniques **are all independent modules and can be combined** to create new models
+
+  **Minimalism**: Each module is **simple and compact**. All code should be understandable as well. However, repeatability and innovation may be somewhat lower.
+
+  **Easy Scalability**: You can add modules very easily with new classes or functions. Therefore, you can make various expressions necessary for advanced research.
+
+  **Python based**: There is no need for a separate model configuration file, and the models are defined in Python code constructed using Theano or Tensorflow.
+
+  In addition, Keras **provides a variety of Transfer Learning** models as class functions, so we choose Keras API.
+
+  When creating a Deep Learning model with Keras, **follow these steps**. It is similar to other DeepLearning libraries, but **much more intuitive and concise**.
+
+<br />
+
+![fig_32](./figures/fig_32.png)
+
+<br />
+
+The upcoming Model Implementation tutorial will proceed as above.
+If you are unfamiliar with using Keras, you should study the basic Keras programming process by referring to the following exercise code before learning this tutorial.
+
+**Reference 'Basic Keras Programming Tutorial code' **
+
+### 0. Load Keras package needed
+
+Keras input/output data type is numpy array, because we operate the Keras based on the tensor flow, we will see the words 'Using TensorFlow backend. ‘at the first time. If this code does not work by error, check library install.
+
+<br />
+
+![fig_33](./figures/fig_33.png)
+
+<br />
+
+Fixing random seed, prevent other results from repeating in the Research.
+
+<br />
+
+![fig_34](./figures/fig_34.png)
+
+<br />
+
+### 1-1. Creating Datasets
+
+We will run the example using the most widely known MNIST dataset for beginners.
+On Keras, some representative datasets are supported by the library server. By below function you can download MNIST datasets from server
+
+<br />
+
+![fig_35](./figures/fig_35.png)
+
+<br />
+
+<br />
+
+![fig_36](./figures/fig_36.png)
+
+<br />
+
+At this time, MNIST dataset input is ( data_size, columns, rows ) numpy array and label is 0~9 number. 
+
+Therefore, preprocessing is necessary to match the input size of the model before using it.
+
+<br />
+
+![fig_37](./figures/fig_35.png)
+
+<br />
+
+<br />
+
+![fig_38](./figures/fig_35.png)
+
+<br />
+
+By reshape() function in numpy array, we can convert input data as one dimensional array for Dense layer input and np_utils.to_categorical() is same to one_hot function that extend one dimension example from [[9]] to [[0, 0, 0, 0, 0, 0, 0, 0, 0, 1]]
+
+### 2-1. Building a Model
+
+Sequential model declaration allows you to define a model by specifying only the output shape of each layer without specifying the input shape. In this, input layer must have input shape or user must define input layer separately, and each layer has activation function and node number ( output dimension )
+
+<br />
+
+![fig_39](./figures/fig_39.png)
+
+<br />
+
+You can also visualize how your model is constructed with simple functions, no matter how you structure the model. This will ensure that your model is well organized.
+
+<br />
+
+![fig_40](./figures/fig_40.png)
+
+<br />
+
+<br />
+
+![fig_41](./figures/fig_41.png)
+
+<br />
+
+### 1-2. Creating Datasets
+
+<br />
+
+![fig_42](./figures/fig_42.png)
+
+<br />
+
+<br />
+
+![fig_43](./figures/fig_43.png)
+
+<br />
+
+<br />
+
+![fig_44](./figures/fig_44.png)
+
+<br />
+
+<br />
+
+![fig_45](./figures/fig_45.png)
+
+<br />
+
+The configuration of the convolutional neural network can also be implemented in a way that is not significantly different. In this case, convolutional layer input must be ( batch_size, columns, rows, channels ) shape. Because MNIST dataset is gray scale, so we must add meaningless dimension
+
+### 2-2. Buliding a Model
+
+Convolutional neural networks, like the dense layer, must define the input shape first, kernal_size is the size of the filter, and the first variable is the number of filter channels. In order to obtain the result, it is necessary to connect the CNN code to the input of the dense layer through the platen layer.
+
+<br />
+
+![fig_46](./figures/fig_46.png)
+
+<br />
+
+<br />
+
+![fig_47](./figures/fig_47.png)
+
+<br />
+
+In this case, by visualized model, you can see 3 convolutional layers input and output shape and dense layer get 9216 CNN Code from flatten layer 
+
+### 3. Setting up the Model Learning Process
+
+To compile the model for training, we need to specify an optimizer. 
+
+In this case, the man optimizer is used, and each parameter is the default setting of this optimizer.
+
+Also, you have to define the loss function when compiling the model. In case of binary classification model, you have to specify it according to the type of output like binary_crossentropy. 
+
+Also, the metric represents the rating scale and is usually set to accuracy.
+
+<br />
+
+![fig_48](./figures/fig_48.png)
+
+<br />
+
+Before this process you must choice 1_1, 2_1 or 1_2, 2_2 model.
+
+### 4. Training the Model
+
+By using the fit() function to learn the model, the following learning process can be visualized and observed. you can specify several hyper parameters in the fit function, such as batch_size, validation rate, epoch, and this function returns a record that trains the model.
+
+<br />
+
+![fig_49](./figures/fig_49.png)
+
+<br />
+
+It should be noted that when the validation is divided, the training data must be mixed by distributing the data at a certain rate in the back of the dataset.
+
+<br />
+
+![fig_50](./figures/fig_50.png)
+
+<br />
+
+### 5. Confirm the Learning Process
+
+The following code can be used to visualize the history returned earlier.
+
+The green line represents validation Acc and the red line represents validation loss, which is an important indicator of training. If, during training, the validation loss tends to increase without further decline, the model should be discontinued because it is overfitting.
+
+<br />
+
+![fig_51](./figures/fig_50.png)
+
+<br />
+
+<br />
+
+![fig_52](./figures/fig_52.png)
+
+<br />
+
+### 6. Evaluating the Model
+
+<br />
+
+![fig_53](./figures/fig_53.png)
+
+<br />
+
+<br />
+
+![fig_54](./figures/fig_54.png)
+
+<br />
+
+Unlike the fit function, this valuation function evaluates the value without learning the model. I put the test data set that I divided at the starting point, and it showed the following result.
+
+### 7. Using the Model
+
+To use the model, Keras provides a function to store and load the model as follows: The model is saved in h5 format along the specified path and loaded.
+
+<br />
+
+![fig_55](./figures/fig_55.png)
+
+<br />
+
+To use the model, two functions are given as follows: the predict function returns the result through the softmax layer, and the predict_classes function returns the column number with the greatest probability.
+
+By using these two functions, we can get the results from the classification model.
+
+For detailed parameter settings and functions in the above example code, visit the following web page
+https://keras.io/
+
+And, if you want to know how to implement several basic DeepLearning models, it would be helpful to refer to this blog.
+
+https://tykimos.github.io/
+
+## Model Implementation Introducition : Transfer Learning
+
+<br />
+
+![fig_56](./figures/fig_56.png)
+
+<br />
+
+It is a way to speed up learning and improve predictability when creating new models using existing models. Practically speaking, there is not much to learn from the start of the Convolution network. Most problems can be solved using models that have already been learned. number of layers, activation, hyper parameters, etc., and there is a lot of effort to actually learn
+
+When you start transfer learning, the recommended transfer learning method depends on the size and shape of your data set. We use case 1's learning method because we have a relatively small set of data and the shape of the libs is made up of different shapes that can be distinguished in the form of visual images. 
+
+CS231n: Convolutional Neural Networks for Visual Recognition. 
+
+http://cs231n.github.io/
+
+<br />
+
+![fig_57](./figures/fig_57.png)
+
+<br />
+
+<br />
+
+![fig_58](./figures/fig_58.png)
+
+<br />
+
+## Transfer Learning Introduction : VGG16
+
+The VGG model is one of the most widely used models and is a simple model in the form of a traditional CNN. It takes a 224x224 3 channel image as input and generates 4096 CNN codes. 
+
+The disadvantage of this model is that it has a lot of weight but it has good performance, but with a total of 138M weights, it creates a lot of memory allocation and large model.
+
+<br />
+
+![fig_59](./figures/fig_59.png)
+
+<br />
+
+<br />
+
+![fig_60](./figures/fig_60.png)
+
+<br />
+
+**Very Deep Convolutional Networks for Large-Scale Image Recognition**
+Karen Simonyan, Andrew Zisserman
+*(Submitted on 4 Sep 2014 (v1), last revised 10 Apr 2015 (this version, v6))*
+
+## Transfer Learning Introduction: inception V3
+
+The inception model evolved from the existing Google Net, and is one of the popular transfer learning models such as VGG. They have a very small number of weights (as large as 24M) and a complex convolution filter shape and model structure compared to the VGG.
+
+<br />
+
+![fig_61](./figures/fig_61.png)
+
+<br />
+
+<br />
+
+![fig_62](./figures/fig_62.png)
+
+<br />
+
+**Rethinking the Inception Architecture for Computer Vision**
+Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, Zbigniew Wojna
+*(Submitted on 2 Dec 2015 (v1), last revised 11 Dec 2015 (this version, v3))*
+
+## Transfer Learning Introduction: ResNet
+
+ResNet is a model with a unique layer structure called Identify mapping, which can effectively train deep models. The size of the model is similar to Inception v3
+
+<br />
+
+![fig_63](./figures/fig_63.png)
+
+<br />
+
+<br />
+
+![fig_64](./figures/fig_64.png)
+
+<br />
+
+**Deep Residual Learning for Image Recognition**
+Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+*(Submitted on 10 Dec 2015)*
+
+## Transfer Learning Introduction: MobileNet
+
+<br />
+
+![fig_65](./figures/fig_65.png)
+
+<br />
+
+**MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications**
+Andrew G. Howard, Menglong Zhu, Bo Chen, Dmitry Kalenichenko, Weijun Wang, Tobias Weyand, Marco Andreetto, Hartwig Adam
+*(Submitted on 17 Apr 2017)*
+
+## Model Implementation Introduction: Transfer Learning Code
+
+**Reference 'Transfer Learning Tutorial code'**
+
+Keras provides all of the models described above as part of the library. We can download the weights of the above models from the server through a very simple function. We can get our CNN code as output of this model and construct our own model by connecting additional layers using Keras function.
+
+However, since the transfer learning model does not use the sequential model structuring used in the previous example, we need to construct the model structure using the Keras API function. This is of course not difficult, it can be implemented simply by specifying the input and output layers
+
+In this, You must know that almost transfer learning model need 3 channel input image
+
+The code below provides a more convenient function code specific to training CNN.
+
+### 0.Load Keras package needed
+
+Keras has a variety of class functions, which can vary depending on the version, so it can be difficult to run code if your version does not match the Tutorial.
+
+<br />
+
+![fig_66](./figures/fig_66.png)
+
+<br />
+
+In this, first, we set the parameters necessary for model training. 
+The meanings of the variables are as follows
+batch_size: batch size for learning
+num_epochs: repeat numbers of training epochs
+steps_epoch: training numbers in one epoch, ex) batch_size = 10, steps_epoch = 10 than 100 data per epoch 
+Val_steps: at the end of each epoch, validation test is conducted this means this step numbers
+img_col: input image columns
+img_row: input image rows
+img_channel: channel of image, for transfer leaning in Keras, it is 3 almost
+num_classes: your label numbers
+
+<br />
+
+![fig_67](./figures/fig_67.png)
+
+<br />
+
+Note that the size of the image depends on each transferring model. VGG16 supports 224x224, inceptionV3 supports 229x229, ResNet50 supports 224x224, and MobileNet supports 128x128, 160x160, 192x192 and 224x224.
+It is essential to adjust the parameters according to the type of model and the number of labels you have.
+
+### 1.Creating Datasets
+
+One of the most convenient features of the Keras library in CNN training is the very simple preprocessing and image processing.
+
+<br />
+
+![fig_68](./figures/fig_68.png)
+
+<br />
+
+Keras preprocesses the image with a single function to help inflate the image set.
+Image Generator allows you to set various image conversion settings as below. You can set the processing conditions of the empty space by rotation angle, left / right, up / down ratio, image shear, enlargement ratio, upside / downside, . In this case, nearest means to fill with near color
+You can use the flow_from_directory function to get the data directly to the generator queue as batch size. The dataset must be stored in the subfolder structure as follows: In 'categorical' mode, the name of the folder becomes the label of each class. It also automatically adjusts the image size during the import process.
+
+<br />
+
+![fig_69](./figures/fig_69.png)
+
+<br />
+
+### 2.Building a Model
+
+The model declaration proceeds as follows. When using the Keras API, each input and output layer address must be specified as follows so that the model is layered and the input and output layers must be explicitly specified using the last Model function to activate the fit function.
+
+<br />
+
+![fig_70](./figures/fig_70.png)
+
+<br />
+
+Let's look at the main function
+
+<br />
+
+![fig_71](./figures/fig_71.png)
+
+<br />
+
+The application classes provide a variety of transfer learning models. It is downloaded from the server and stores multiple versions of the weights, and we take the weights used in the most typical imagenet challenge to perform examples and tasks.
+In this case, you need to modify the include_top parameter according to the first case. If it is False, only the convolutional filter except the last FC-dense layer is added to the model. If True, whole model that classifying 1024 classes is downloaded.
+We can also set the trainable parameters for this model by setting the trainable parameter.
+Since we assume case1, we set it to False. If you want, you can check the model structure and set the training for each layer.
+
+### 3.Setting up the Model Learning Process & 4. Training the Model
+
+Model compilation is no different from the previous example. For this example, we used SGD as the optimizer and lr represents the learning rate.
+
+<br />
+
+![fig_72](./figures/fig_72.png)
+
+<br />
+
+If you use the image generator to retrieve data in a queue format, you should use the fit_generator() function instead of the existing fit function. In this process, the model can be learned by designating the variable as the above order. In case of the train generator, it should be included.
+The subsequent steps are the same as in the previous example.
+
+## Model Implementation Lip Reading
+
+**Reference 'Lip Reading Tutorial Traininig'**
+
+First we introduce the simple structure of the model we will use.
+We will receive the frame sequence from the image information, encode it through the CNN model, and classify the sequence using the LSTM model. In short, CNN + LSTM is our model architecture.
+The visualization is as follows.
+
+<br />
+
+![fig_73](./figures/fig_73.png)
+
+<br />
+
+### 0.Load keras package needed
+
+We need a special preprocessing process because we will use a user-created dataset rather than a formal dataset. To do this, use the OS and OpenCV libraries. Other libraries are the same as the previous example code, except for some layers.
+
+<br />
+
+![fig_74](./figures/fig_74.png)
+
+<br />
+
+The following parameters are the key parameters in training the model.
+
+<br />
+
+![fig_75](./figures/fig_75.png)
+
+<br />
+
+timesteps is the length of the input sequence into the LSTM model.
+n_labels is the number of classes to predict.
+Learning_rate is the variable that the optimizer will use and is now set to the default value of the adam optimizer.
+batch_size is the number of data to be learned at a time
+The validation_ratio is the ratio of how much of the original data set is used as the validation data set.
+num_epochs means how many times to learn about the entire dataset.
+img_col, img_row means the size of the image to be input to CNN, and it must be set to the size appropriate for the model used for each transfer run.
+img_channel is 3, RGB scale for almost transfer learning model in Keras.
+
+### 1. Creating Datasets
+
+Our own datasets can be converted to deep-running formats through the following path algorithms. The dataset to be used at this time must be stored with the code in folder-subfolder format.
+
+<br />
+
+![fig_76](./figures/fig_76.png)
+
+<br />
+
+The code is described below.
+We will use a normalized cascade dataset that can be retrieved from the server. If it is not decompressed, you need to unzip it before you run this code.
+
+
+<br />
+
+![fig_77](./figures/fig_77.png)
+
+<br />
+
+<br />
+
+![fig_78](./figures/fig_78.png)
+
+<br />
+
+First, each subfolder is searched and the number of data in it is read by OS library
+
+<br />
+
+![fig_79](./figures/fig_79.png)
+
+<br />
+
+The data is stored in a subfolder in the form of a jpg image in numerical order, so it is read through the loop by OpenCV Library function imread.
+At the same time, the image is scaled to the input size for transfer Learning by OpenCV Library function resize, and the label is stored after escaping the subfolder.
+
+<br />
+
+![fig_80](./figures/fig_80.png)
+
+<br />
+
+It is also converted to a numpy array type for use in Keras, and the labels are One_hot encoded by eye function.
+
+<br />
+
+![fig_81](./figures/fig_81.png)
+
+<br />
+
+The result is as follows. In the case of input data, we can see that it has the same shape as the first input parameters to put into the model. The label is also made up of a stack of one-dimensional matrices.
+And also, the dataset and its corresponding labels should also be shuffled to fit function
+They must be shuffled in the same order, and for this, a random array corresponding to the data size is created and the shuffle proceeds in that order.
+
+<br />
+
+![fig_82](./figures/fig_82.png)
+
+<br />
+
+### 2.Building a Model
+
+The model configuration consists of three steps.
+
+1.	CNN model architecture declaration ( Transfer Learning model )
+2.	LSTM model architecture declaration 
+3.	Combine whole model CNN+LSTM model architecture 
+
+It consists of Keras API functions. The code is shown below. 
+The model architecture has been modified by the authors through several training processes.
+
+<br />
+
+![fig_83](./figures/fig_83.png)
+
+<br />
+
+First, set up an input layer of type ( timesteps, col, row, channel ) for whole architecture
+
+<br />
+
+![fig_84](./figures/fig_84.png)
+
+<br />
+
+#### CNN model architecture declaration
+
+<br />
+
+![fig_85](./figures/fig_85.png)
+
+<br />
+
+CNN model code is shown upper. 
+We selected the MobileNet architecture with a relatively low weight as the transfer learning model considering the model size by adding the LSTM layer.
+You can use other models like InceptionV3, ResNet50 etc.. by simple change of applications class name to this from MobileNet, but you must modify the required parameters as ( cols, rows, channel ) shape
+The MobileNet receives specified image and returns the CNN code, which is set to be impossible to learn.
+At the end of the CNN model, the dense layer consists of two sets of learnable states, which will be used as input to the LSTM layer, so the activation function is both ReLu. 
+The dense layer has 1024, 128 nodes each and includes a dropout layer in the middle.
+It is formed as an independent structure Lstm_inp and can be modified internally.
+If you need more explanation, you can refer to Tutorial front for TransferLearning
+
+#### LSTM model architecture declaration
+
+<br />
+
+![fig_86](./figures/fig_85.png)
+
+<br />
+
+LSTM model code is shown upper.
+The important thing to know at this point is the TimeDistribute function supported by Keras.
+This function takes the sequenced data and encodes its contents. As a model for encoding, we will use the entire CNN model.
+To supplement this function with the previous data as an example, we have set the input to ( 10, 128, 128, 3 ) as the entire model input, so this is the input sequence.
+The encoded_frames have a shape of ( 10, 128 ) because we put this into the CNN model with (128, 128, 3) input and we get the dense layer output ( 128 ) nodes
+The LSTM layer receives this sequence and returns 256 nodes, which are computed as a probability value through a softmax function via a dense layer 128 node Relu activation with a dropout 0.3 ratio.
+
+#### Combine whole model CNN+LSTM model architecture 
+
+The weaving of such constructed models is done simply by using the Model function. By define input and output layer
+
+<br />
+
+![fig_87](./figures/fig_87.png)
+
+<br />
+
+### 3.Setting up the Model Learning Process
+
+<br />
+
+![fig_88](./figures/fig_88.png)
+
+<br />
+
+As the optimizer, we used the Adam optimizer which is generally known to have good performance and the default parameters are the default values. Details of this can be found on the Keras library website. Also, since we are classifying the classes, we set the loss function like this.
+You can use this function to verify the model architecture, but this applies only to the post-LSTM part.
+So if you want detail part of CNN architecture. You must refer to previous Tutorial for transfer learning
+
+<br />
+
+![fig_89](./figures/fig_88.png)
+
+<br />
+
+<br />
+
+![fig_90](./figures/fig_89.png)
+
+<br />
+
+You can use this function to verify the model architecture, but this applies only to the post-LSTM part.
+So if you want detail part of CNN architecture. You must refer to previous Tutorial for transfer learning
+
+<br />
+
+![fig_91](./figures/fig_91.png)
+
+<br />
+
+### 4.Training the Model
+
+<br />
+
+![fig_92](./figures/fig_92.png)
+
+<br />
+
+Since the generator is not specified in this case, the model fit() function is used. the whole data is put into memory instead of reading the data into the flow every moment, and the shuffled batch is extracted and used. Therefore, a very large data set will require special preprocessing in your case
+
+<br />
+
+![fig_93](./figures/fig_93.png)
+
+<br />
+
+By running this function, you can observe the training process in real time as shown in the figure. This helps to stop immediately when judged that the wrong training is going on.
+
+### 5.Confirm the Learning Process
+
+<br />
+
+![fig_94](./figures/fig_94.png)
+
+<br />
+
+Visualizing the training process is exactly the same as the previous example, and works on any model if you only set the model name.
+The green line represents validation acc and the red line represents validation loss, which is an important indicator of training. If, during training, the validation loss tends to increase without further decline, the model should be discontinued because it is overfitting.
+
+<br />
+
+![fig_95](./figures/fig_95.png)
+
+<br />
+
+### 6. Using the Model
+
+<br />
+
+![fig_96](./figures/fig_96.png)
+
+<br />
+
+You can save the model to the name you want by h5 format datatype.
+One thing to note is that it takes up a large amount of capacity because it has a re-trainable graph structure.
+
+
+### 7 Using the Model on Other Dataset
+
+**Reference 'Lip Reading Tutorial Test'**
+
+Let's apply it to a new set of lip sequence data that is formed in a different way. We start by loading the library first.
+
+<br />
+
+![fig_97](./figures/fig_97.png)
+
+<br />
+
+Loading a model is also possible with a simple function.
+It should be noted here that in some cases, some transfer learning models have to define them using user-defined functions, such as MobileNet.
+
+<br />
+
+![fig_98](./figures/fig_98.png)
+
+<br />
+
+This can be solved with the CumtomObejectScope() function. For each model, you should refer to the Keras library for more information. Most models do not have this problem.
+The code to fetch the dataset is completely similar to the previous one.
+
+<br />
+
+![fig_99](./figures/fig_99.png)
+
+<br />
+
+<br />
+
+![fig_100](./figures/fig_100.png)
+
+<br />
+
+You do not need to apply shuffle in your data evaluation, but you can do it if you like.
+
+<br />
+
+![fig_101](./figures/fig_101.png)
+
+<br />
+
+The code for evaluating the model looks like the side, and the loaded data is evaluated by the step by step one by one.
+Each n variable is the number of correct answers, and npp is the total number of correct answers.
+A detailed description of the code follows.
+
+<br />
+
+![fig_102](./figures/fig_102.png)
+
+<br />
+
+First set the loop as much as the size of the received data.
+We then take the i-th array from the data, but note that the model's input always has a structure ( batch size, timesteps, col, row, channel ) You have to put in the data. Therefore, we have to add meaningless dimensions to the front axes. It can be done by expend_dim numpy function
+
+<br />
+
+![fig_103](./figures/fig_103.png)
+
+<br />
+
+Then, the predict() function supported by Keras can be used to obtain the probability of each class of data passing through the loaded model. 
+The batch size is 1 for each batch.
+
+<br />
+
+![fig_104](./figures/fig_104.png)
+
+<br />
+
+The argmax() function returns a number with the highest value on the specified axis, which can be used to obtain the label of the data most likely to be probable. The result is as follows.
+
+<br />
+
+![fig_105](./figures/fig_105.png)
+
+<br />
+
+<br />
+
+![fig_106](./figures/fig_106.png)
+
+<br />
+
+<br />
+
+![fig_107](./figures/fig_107.png)
+
+<br />
+
+<br />
+
+![fig_108](./figures/fig_108.png)
+
+<br />
+
+Overall, they showed about half the accuracy, and the results for each label are the same as the figure. If you like, you can check the sequence and access the folder, and you can see lip-shaped photos stored in image form to see how similar the model predicted.
+
+<br />
+
+![fig_109](./figures/fig_109.png)
+
+<br />
+
 ## Result
 
 ### Training Result
