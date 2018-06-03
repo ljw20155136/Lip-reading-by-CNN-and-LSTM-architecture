@@ -176,7 +176,7 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
 
 <br />
 
-## Data Set Preparation
+## Dataset Preparation
 
   As suggested in introduction, we had to manually create few lip motion datasets for the training of our model. We selected the 7 most frequently used words in the news. Also, a default set was prepared for lip motion excluding these seven words. Therefore, 8 labels were prepared; 미국(America), 국회(Congress), 기자(Journalist), 뉴스(News), 북한(North Korea), 대통령(President), 오늘(Today), 디폴트(Default). If you want, you can select more words, but it will be more difficult to collect datasets. 
   
@@ -191,3 +191,53 @@ Now, explain the visualization of learning process in the Keras. In the Keras, c
  * Padding & Sampling for data (fame) normalization
  
  * 8:2 ratio of Train/Validation set
+ 
+### Raw Data Collection
+
+<br />
+
+![fig_11](./figures/fig_11.png)
+
+<br />
+
+  To collect raw video data, you can use the news homepage of any broadcaster like KBS, MBC, JTBC, etc. If you search the selected words in the search box, you can find the news video that speaks the word. By using some video capture software program like Bandicam, you can get a avi file of video. (Search Bandicam in Naver. Because the video for lip motion of each word is just few seconds, the free trail version of Bandicam is enough.)
+  
+<br />
+
+![fig_12](./figures/fig_12.png)
+
+<br />
+
+  It is difficult to take exact lip motion video of only the interested word by using just video capture program. Then, you can download and use Video Editor Programs like VSDC Video Editor Program which is free. (Download : http://www.videosoftdev.com/free-video-editor?AVGAFFILIATE=3305) 
+  
+<br />
+
+![fig_13](./figures/fig_13.png)
+
+<br />  
+
+  After running the program, click new project and then, click finish. Then, you can use this editor. 
+  
+<br />
+
+![fig_14](./figures/fig_14.png)
+
+<br />  
+
+  You can load the video by drag avi file to the black area. Select the video by clicking the image. Then, at lower red box, you can select the section of video to edit. After select the section, you can cut the section by click the button at upper red box. You can watch the editing video by Preview button ( blue box ).
+  
+<br />
+
+![fig_15](./figures/fig_15.png)
+
+<br />  
+
+  If the editing is finished, you can save the avi file at export project tab. At this tab, Click Export project button then, it saves at the location of red box. You can continue editing of other video to go back the Editor tab without making new project.
+  
+<br />
+
+![fig_16](./figures/fig_16.png)
+
+<br />
+
+  Finally, to get data smoothly at training part of deep learning model, you should organize the filenames and path.
